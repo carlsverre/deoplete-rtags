@@ -43,6 +43,8 @@ class Source(Base):
             return []
         completions_json = json.loads(stdout_data_decoded)
         completions = []
+        if 'completions' not in completions_json:
+            return []
         for raw_completion in completions_json['completions']:
             completion = {'dup': 1}
             if raw_completion['kind'] == "VarDecl":
